@@ -14,7 +14,12 @@
         "jlapp/swaggervel": "dev-master",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.4.0"
+        "laravelcollective/html": "^5.4.0",
+        "anouar/fpdf": "^2.0",
+        "jenssegers/date": "^3.2",
+        "maatwebsite/excel": "^2.1",
+        "greggilbert/recaptcha": "dev-master",
+        "arielcr/numero-a-letras": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

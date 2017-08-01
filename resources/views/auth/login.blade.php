@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>InfyOm Laravel Generator</title>
+    <title>FestContrato</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -34,12 +34,12 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
+        <a href="{{ url('/home') }}"><b>Fest</b>Contrato</a>
     </div>
 
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Login</p>
+        <p class="login-box-msg">Acceder</p>
 
         <form method="post" action="{{ url('/login') }}">
             {!! csrf_field() !!}
@@ -55,7 +55,7 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                <input type="password" class="form-control" placeholder="Password" name="password">
+                <input type="password" class="form-control" placeholder="Contraseña" name="password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 @if ($errors->has('password'))
                     <span class="help-block">
@@ -65,23 +65,28 @@
 
             </div>
             <div class="row">
-                <div class="col-xs-8">
+                <div class="col-xs-6">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox" name="remember"> Remember Me
+                            <input type="checkbox" name="remember"> Recuerdame
                         </label>
                     </div>
                 </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            <div class="col-xs-6" style="margin-top: 10px;   margin-bottom: 10px;">
+                <a href="{{ url('/password/reset') }}">¿Olvidó su contraseña?</a><br>
+            </div>
+            </div>
+              <div class="row">
+                    <!-- /.col -->
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar</button>
                 </div>
                 <!-- /.col -->
-            </div>
+              </div>
         </form>
-
-        <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
-        <a href="{{ url('/register') }}" class="text-center">Register a new membership</a>
+       <p style="margin-top: 10px;">
+            No tienes cuenta? <a href="{{ url('/register') }}" class="text-center">Registrate</a>
+       </p>
 
     </div>
     <!-- /.login-box-body -->

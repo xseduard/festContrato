@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>InfyOm Laravel Generator | Registration Page</title>
+    <title>Registro | FestContrato</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -37,26 +37,46 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
+        <a href="{{ url('/home') }}"><b>Fest</b>Contrato</a>
     </div>
 
     <div class="register-box-body">
-        <p class="login-box-msg">Sign Up</p>
+        <p class="login-box-msg">Registrate</p>
 
         <form method="post" action="{{ url('/register') }}">
 
             {!! csrf_field() !!}
-
-            <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Full Name">
+            <div class="form-group has-feedback{{ $errors->has('cedula') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" placeholder="cédula">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
-                @if ($errors->has('name'))
+                @if ($errors->has('cedula'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('name') }}</strong>
+                        <strong>{{ $errors->first('cedula') }}</strong>
                     </span>
                 @endif
             </div>
+
+            <div class="form-group has-feedback{{ $errors->has('nombres') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="nombres" value="{{ old('nombres') }}" placeholder="Nombres">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                @if ($errors->has('nombres'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('nombres') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="form-group has-feedback{{ $errors->has('apellidos') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="apellidos" value="{{ old('apellidos') }}" placeholder="Apellidos">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                @if ($errors->has('apellidos'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('apellidos') }}</strong>
+                    </span>
+                @endif
+            </div>            
 
             <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
                 <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
@@ -95,19 +115,19 @@
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> I agree to the <a href="#">terms</a>
+                            <input type="checkbox"> Acepto los <a href="#">terminos de uso</a>
                         </label>
                     </div>
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
                 </div>
                 <!-- /.col -->
             </div>
         </form>
 
-        <a href="{{ url('/login') }}" class="text-center">I already have a membership</a>
+        <a href="{{ url('/login') }}" class="text-center">Ya tengo una cuenta</a>
     </div>
     <!-- /.form-box -->
 </div>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>InfyOm Generator</title>
+    <title>FestContrato</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -23,9 +23,10 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="#" class="logo">
-            <b>InfyOm</b>
-        </a>
+            <a href="#" class="logo">
+                <span class="logo-mini"><b>F</b>CO</span>
+                <span class="logo-lg"><b>Fest</b>Contrato</span>
+            </a>
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -41,30 +42,30 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                            <img src="/multimedia/web/profile-default.png"
                                  class="user-image" alt="User Image"/>
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">{!! Auth::user()->name !!}</span>
+                            <span class="hidden-xs">{!! Auth::user()->nombres !!}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                <img src="/multimedia/web/profile-default.png"
                                      class="img-circle" alt="User Image"/>
                                 <p>
-                                    {!! Auth::user()->name !!}
-                                    <small>Member since {!! Auth::user()->created_at->format('M. Y') !!}</small>
+                                    {!! Auth::user()->fullname !!}
+                                    <small>Miembro desde {!! Auth::user()->created_at->format('M. Y') !!}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        Sign out
+                                        Cerrar Session
                                     </a>
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                                           style="display: none;">
@@ -88,7 +89,7 @@
 
     <!-- Main Footer -->
     <footer class="main-footer" style="max-height: 100px;text-align: center">
-        <strong>Copyright © 2016 <a href="http://infyom.com" target="_blank">InfyOm Technologies</a>.</strong> All rights reserved.
+        <strong>Copyright © 2017 <a href="https://transportedigital.com" target="_blank">FesContrato Technologies</a>.</strong> All rights reserved.
     </footer>
 
 </div>
