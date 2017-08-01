@@ -18,6 +18,7 @@ class TriangleController extends AppBaseController
 
     public function __construct(TriangleRepository $triangleRepo)
     {
+        $this->middleware('auth');
         $this->triangleRepository = $triangleRepo;
     }
 

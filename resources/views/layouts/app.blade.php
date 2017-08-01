@@ -15,9 +15,10 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/_all.css">
     @yield('css')
+    @stack('css')
 </head>
 
-<body class="skin-blue sidebar-mini">
+<body class="skin-purple sidebar-mini">
 <div class="wrapper">
     <!-- Main Header -->
     <header class="main-header">
@@ -105,5 +106,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
 
 @yield('scripts')
+@stack('scripts')
 </body>
 </html>

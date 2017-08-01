@@ -142,7 +142,7 @@ return [
 
         'swagger'       => false,
 
-        'tests'         => true,
+        'tests'         => false,
 
         'datatables'    => false,
 
