@@ -3,11 +3,13 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use App\Traits\DatesTranslator;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use DatesTranslator, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -39,4 +41,20 @@ class User extends Authenticatable
     {
        return $this->nombres . ' ' . $this->apellidos;
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role', 'assigned_roles');
+    }
+
+    public function hasRoles(array $roles)
+    {        
+        return $this->roles->pluck('name')->intersect($roles)->count();        
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasRoles(['admin']);
+    }    
+
 }

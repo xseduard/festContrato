@@ -58,13 +58,13 @@
                                      class="img-circle" alt="User Image"/>
                                 <p>
                                     {!! Auth::user()->fullname !!}
-                                    <small>Miembro desde {!! Auth::user()->created_at->format('M. Y') !!}</small>
+                                    <small>Miembro desde {!! ucwords(Auth::user()->created_at->format('F, Y')) !!}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="/usuarios/{{ auth()->id() }}/edit" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
