@@ -5,6 +5,10 @@
     <div class="row">
 	   <div class="col-sm-12">
 	   		<div class="panel panel-info" style="margin-top: 30px">
+				<div class="clearfix"></div>
+			    <div class="animsition" data-animsition-in-class="zoom-in-sm" data-animsition-in-duration="1500" data-animsition-out-class="zoom-out-sm" data-animsition-out-duration="800">
+			        @include('flash::message')
+			    </div>
 	   			<div class="panel-body">
 	   				Bienevenido a FestContrato
 	   			</div>

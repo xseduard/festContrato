@@ -36,6 +36,11 @@ class User extends Authenticatable
     /**
      * Mutadores
      */
+    public function setPasswordAttribute($password)
+    {
+        $this->attribute['password'] = bcrypt($password);
+    }
+    
 
     public function getFullNameAttribute()
     {

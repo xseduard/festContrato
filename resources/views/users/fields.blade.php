@@ -24,17 +24,20 @@
 
 <div class="clearfix"></div>
 
-<!-- Password Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('password', 'Contraseña') !!}
-    {!! Form::password('password', ['class' => 'form-control']) !!}
-</div>
 
-<!-- Password Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('password', 'Confirmar Contraseña') !!}
-    {!! Form::password('password', ['class' => 'form-control']) !!}
-</div>
+@if (Request::is('usuarios/create'))
+    <!-- Password Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('password', 'Contraseña') !!}
+        {!! Form::password('password', ['class' => 'form-control']) !!}
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('password_confirmation', 'Confirmar Contraseña') !!}
+        {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+    </div>
+@endif
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\User;
 
-class UpdateUsersRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class UpdateUsersRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,8 +28,17 @@ class UpdateUsersRequest extends FormRequest
             'nombres'   => 'required|string|max:100',
             'apellidos' => 'required|string|max:100',
             'cedula'    => 'required|numeric',
-            'email'     => 'required|string|email|max:255|unique:users,email,'.$this->route('usuario'),
-            'password'  => 'required|string|min:6|confirmed',
+            'email'     => 'required|string|email|max:255|unique:users,email,'.$this->route('usuario')            
+        ];
+    }
+
+    public function attributes() {
+        return [
+            'nombres'   => 'nombres',
+            'apellidos' => 'apellidos',
+            'cedula'    => 'cédula',
+            'email'     => 'correo/email',
+            'password'  => 'contraseña',
         ];
     }
 }

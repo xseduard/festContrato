@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Flash;
-
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\User;
+use Flash;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -44,9 +45,19 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+       User::create([
+            'nombres'   => $request->nombres,
+            'apellidos' => $request->apellidos,
+            'cedula'    => $request->cedula,
+            'email'     => $request->email,
+            'password'  => $request->password,
+        ]);
+
+       Flash::success('Usuario registrado correctamente.');
+
+        return redirect(route('usuarios.index'));
     }
 
     /**
@@ -91,10 +102,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         try {
-            $user =  User::find($id);
+            $user = User::find($id);
         } catch (Exception $e) { /*nothing*/ }
 
         if (empty($user)) {
@@ -105,7 +116,12 @@ class UsersController extends Controller
         
         $this->authorize($user);
 
-        return $request->all();
+        $user->update($request->only('cedula', 'nombres', 'apellidos', 'email'));
+        
+        Flash::success('Usuario actualizado correctamente.');
+
+        return redirect('home');
+
     }
 
     /**
@@ -118,7 +134,7 @@ class UsersController extends Controller
     {
 
         try {
-            $user =  User::find($id);
+            $user = User::find($id);
         } catch (Exception $e) { /*nothing*/ }
 
         if (empty($user)) {

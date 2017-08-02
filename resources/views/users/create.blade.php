@@ -26,21 +26,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
- <script>
-    $(document).ready(function () {  
-        $(".select2").select2({
-          tags: false, // permite insertar texto
-          language: {noResults: function() {return "No se encontraron coincidencias";}, searching: function() {return "Buscando..";}
-                },
-          placeholder: 'Seleccionar...',      
-          allowClear: true
-        });
-        $('.datepicker').datepicker({             
-            format: 'yyyy-mm-dd',        
-            language: 'es',
-        });
-    });
- </script>
-@endsection
