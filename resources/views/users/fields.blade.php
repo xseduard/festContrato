@@ -24,6 +24,17 @@
 
 <div class="clearfix"></div>
 
+@if (auth()->user()->isAdmin())
+    <!-- Roles Field -->
+    <div class="form-group col-sm-12">
+        {!! Form::label('roles', 'Roles') !!}
+            @foreach ($roles as $id => $name)
+                <label class="checkbox-inline">
+                    {!! Form::checkbox('roles[]', $id, $user->roles->pluck('id')->contains($id) ? '1' : null) !!} {{ $name }}                   
+                </label>
+            @endforeach
+    </div>
+@endif
 
 @if (Request::is('usuarios/create'))
     <!-- Password Field -->

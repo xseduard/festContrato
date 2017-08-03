@@ -1,7 +1,7 @@
 <li class="{{ Request::is('home*') ? 'active' : '' }}">
     <a href="{!! url('/home') !!}"><i class="fa fa-home"></i><span>Inicio</span></a>
 </li>
-@if (auth()->user()->hasRoles(['admin']))
+@if (auth()->user()->isMixAdmin())
 	<li class="{{ Request::is('usuarios*') ? 'active' : '' }}">
 	    <a href="{!! route('usuarios.index') !!}"><i class="fa fa-user"></i><span>Usuarios</span></a>
 	</li>

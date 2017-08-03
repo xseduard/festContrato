@@ -58,6 +58,7 @@
                                      class="img-circle" alt="User Image"/>
                                 <p>
                                     {!! Auth::user()->fullname !!}
+                                    <small> {{  Auth::user()->roles->pluck('display_name')->implode(', ') }}</small>
                                     <small>Miembro desde {!! ucwords(Auth::user()->created_at->format('F, Y')) !!}</small>
                                 </p>
                             </li>

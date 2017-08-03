@@ -36,11 +36,7 @@ class User extends Authenticatable
     /**
      * Mutadores
      */
-    public function setPasswordAttribute($password)
-    {
-        $this->attribute['password'] = bcrypt($password);
-    }
-    
+     
 
     public function getFullNameAttribute()
     {
@@ -49,7 +45,7 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Models\Role', 'assigned_roles');
+        return $this->belongsToMany('App\Models\Role', 'assigned_roles')->withTimestamps();
     }
 
     public function hasRoles(array $roles)
@@ -60,6 +56,16 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->hasRoles(['admin']);
+    }
+
+    public function isSupervisor()
+    {
+        return $this->hasRoles(['supervisor']);
+    }
+
+    public function isMixAdmin()
+    {
+        return $this->hasRoles(['admin', 'supervisor']);
     }    
 
 }

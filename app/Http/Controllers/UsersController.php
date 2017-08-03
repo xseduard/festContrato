@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
+use App\Models\Role;
 use Flash;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('roles:admin',['except' => ['edit', 'update']]);
+        $this->middleware('roles:admin,supervisor',['except' => ['edit', 'update']]);
         // $this->middleware([
         //     'auth', 'roles:admin'
         // ]);       
@@ -52,7 +53,7 @@ class UsersController extends Controller
             'apellidos' => $request->apellidos,
             'cedula'    => $request->cedula,
             'email'     => $request->email,
-            'password'  => $request->password,
+            'password'  => bcrypt($request->password),
         ]);
 
        Flash::success('Usuario registrado correctamente.');
@@ -92,7 +93,9 @@ class UsersController extends Controller
         
         $this->authorize($user);
 
-        return view('users.edit')->with(['user' => $user]);
+        $roles = Role::pluck('display_name', 'id');
+
+        return view('users.edit')->with(['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -104,6 +107,7 @@ class UsersController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
+        // return $request->all();
         try {
             $user = User::find($id);
         } catch (Exception $e) { /*nothing*/ }
@@ -117,6 +121,24 @@ class UsersController extends Controller
         $this->authorize($user);
 
         $user->update($request->only('cedula', 'nombres', 'apellidos', 'email'));
+        
+        if (auth()->user()->isMixAdmin()) {
+            
+            $assignedRoles = $request->roles;
+
+            if (!is_null($request->roles)) {
+                foreach ($request->roles as $role) {
+                   $assignedRoles[$role] = ['who_user' => \Auth::id()];
+                }
+            }
+           
+            $user->roles()->sync($assignedRoles);
+
+            Flash::success('Usuario actualizado correctamente.');
+
+            return redirect('usuarios');
+        }
+
         
         Flash::success('Usuario actualizado correctamente.');
 

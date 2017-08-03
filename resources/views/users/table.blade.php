@@ -21,7 +21,7 @@
                 {!! Form::open(['route' => ['usuarios.destroy', $user->id], 'method' => 'delete']) !!}
                 <div class='btn-group pull-right'>
                    {{--  <a href="{!! route('users.show', [$user->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a> --}}
-                    <a href="{!! route('usuarios.edit', [$user->id]) !!}" class='btn btn-default btn-xs' title='Editar'><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="{!! route('usuarios.edit', [$user->id]) !!}" class='btn btn-default btn-xs' title='Editar'> Editar </a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [
                         'type' => 'submit',
                         'class' => 'btn btn-danger btn-xs',

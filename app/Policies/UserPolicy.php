@@ -22,7 +22,7 @@ class UserPolicy
     // este metodo se lanza primero que los demas y si devuelve true no ejecutará los demas
     public function before($user, $ability)
     {
-        if ($user->isAdmin()) {
+        if ($user->isMixAdmin()) {
             return true;
         }
     }
