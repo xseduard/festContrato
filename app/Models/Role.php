@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\UserRelation;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -20,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Role extends Model
 {
     use SoftDeletes;
+    use UserRelation;
 
     public $table = 'roles';
     
@@ -32,42 +34,34 @@ class Role extends Model
         'display_name',
         'description',
         'user_id'
-    ];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
+    ];    
     protected $casts = [
         'name' => 'string',
         'display_name' => 'string',
         'description' => 'string',
         'user_id' => 'integer'
     ];
-
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
+    
     public static $rules = [
         'name' => 'required|unique:roles',
         'display_name' => 'required'
+    ];    
+
+    public static $attributesCustom = [     
+        'name' => 'llave interna',   
+        'display_name' => 'nombre público',   
+        'description' => 'descripción',    
     ];
+    
 
     /**
      * Relationship Models
      */
-    /*
-    public function modelo(){
-        return $this->belongsTo('App\Models\Modelo');
-    }
-    */
-
     
-
-
+    // public function modelo(){
+    //     return $this->belongsTo('App\Models\Modelo');
+    // }
+    
     /**
      *  Ascensores & Mutadores
      */

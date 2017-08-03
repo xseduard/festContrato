@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use DatesTranslator, Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes;
+    use DatesTranslator; 
 
     /**
      * The attributes that are mass assignable.

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Session;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +18,11 @@
 //     echo "<pre>{ $query->sql }</pre>";
 //     //echo "<pre>{ $query->time }</pre>";
 // });
+
+Route::get('alert', function () { 
+	Session::flash('error2', 'hola');
+	return view('home');
+	 });
 
 Route::get('400', function () { abort(400); });
 Route::get('401', function () { abort(401); });

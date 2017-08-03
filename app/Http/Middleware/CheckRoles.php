@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Session;
 use Laracasts\Flash\Flash;
 
 class CheckRoles
@@ -23,7 +24,7 @@ class CheckRoles
             return $next($request);
         }
 
-        Flash::error('Requiere nivel de privilegios superior.');
-        return redirect('home');
+        Session::flash('error', 'Requiere nivel de privilegios superior.');
+        return back()->withInput();
     }
 }

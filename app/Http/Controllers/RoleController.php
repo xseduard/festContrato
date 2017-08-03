@@ -2,26 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use App\Repositories\CentralRepository;
 use App\Repositories\RoleRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Session;
 
 class RoleController extends AppBaseController
 {
     /** @var  RoleRepository */
     private $roleRepository;
+    private $centralRepository;
 
-    public function __construct(RoleRepository $roleRepo)
+    public function __construct(RoleRepository $roleRepo, CentralRepository $centralRepo)
     {
          $this->middleware([
             'auth', 'roles:admin'
         ]);    
         $this->roleRepository = $roleRepo;
+        $this->centralRepository = $centralRepo;
     }
 
     /**
@@ -38,6 +42,15 @@ class RoleController extends AppBaseController
         return view('roles.index')
             ->with('roles', $roles);
     }
+    /**
+     * Commons Funtions Repository
+     */
+    public function sels()
+    {
+        $sels = [];
+        // $sels['id_atributo'] = $this->centralRepository->id_atributo();
+        return $sels;
+    }
 
     /**
      * Show the form for creating a new Role.
@@ -46,9 +59,9 @@ class RoleController extends AppBaseController
      */
     public function create()
     {
-        $data = [];
+        $sels = $this->sels();
 
-        return view('roles.create')->with(['data' => $data]);
+        return view('roles.create')->with(['sels' => $sels]);
     }
 
     /**
@@ -65,7 +78,7 @@ class RoleController extends AppBaseController
 
         $role = $this->roleRepository->create($input);
 
-        Flash::success('Rol registrado correctamente.');
+        Session::flash('success', 'Rol registrado correctamente.');
 
         return redirect(route('roles.index'));
     }
@@ -82,7 +95,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
-            Flash::error('Rol No se encuentra registrado.');
+            Session::flash('error', 'Rol No se encuentra registrado.');
 
             return redirect(route('roles.index'));
         }
@@ -102,12 +115,14 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
-            Flash::error('Rol No se encuentra registrado.');
+            Session::flash('error', 'Rol No se encuentra registrado.');            
 
             return redirect(route('roles.index'));
         }
 
-        return view('roles.edit')->with('role', $role);
+         $sels = $this->sels();
+
+        return view('roles.edit')->with(['role' => $role, 'sels' => $sels]);
     }
 
     /**
@@ -123,7 +138,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
-            Flash::error('Rol No se encuentra registrado.');
+            Session::flash('error', 'Rol No se encuentra registrado.');
 
             return redirect(route('roles.index'));
         }
@@ -133,7 +148,7 @@ class RoleController extends AppBaseController
 
         $role = $this->roleRepository->update($input, $id);
 
-        Flash::success('Rol actualizado correctamente.');
+        Session::flash('success', 'Rol actualizado correctamente.');
 
         return redirect(route('roles.index'));
     }
@@ -150,14 +165,14 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
-            Flash::error('Rol No se encuentra registrado.');
+            Session::flash('error', 'Rol No se encuentra registrado.');
 
             return redirect(route('roles.index'));
         }
 
         $this->roleRepository->delete($id);
 
-        Flash::success('Rol eliminado correctamente.');
+        Session::flash('success', 'Rol eliminado correctamente.');
 
         return redirect(route('roles.index'));
     }

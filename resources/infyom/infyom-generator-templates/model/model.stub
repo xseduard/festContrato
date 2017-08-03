@@ -2,49 +2,54 @@
 
 namespace $NAMESPACE_MODEL$;
 
+use App\Traits\DatesTranslator;
+use App\Traits\UserRelation;
 use $NAMESPACE_MODEL_EXTEND$ as Model;
 $SOFT_DELETE_IMPORT$
 $DOCS$
 class $MODEL_NAME$ extends Model
 {
 $SOFT_DELETE$
+use DatesTranslator, UserRelation;
     public $table = '$TABLE_NAME$';
     $TIMESTAMPS$
 $SOFT_DELETE_DATES$
 $PRIMARY$
     public $fillable = [
-        $FIELDS$
+        $FIELDS$,
+        'user_id'
     ];
 
     /**
      * The attributes that should be casted to native types.
-     *
-     * @var array
      */
     protected $casts = [
-        $CAST$
+        $CAST$,
+        'user_id' => 'integer'
     ];
 
     /**
      * Validation rules
-     *
-     * @var array
      */
     public static $rules = [
         $RULES$
     ];
 
+    public static $attributesCustom = [     
+        /*
+        $FIELDS$
+        */   
+    ];
+
     /**
      * Relationship Models
      */
-    /*
-    public function modelo(){
-        return $this->belongsTo('App\Models\Modelo');
-    }
-    */
+    
+    // public function modelo(){
+    //     return $this->belongsTo('App\Models\Modelo');
+    // }    
 
     $RELATIONS$
-
 
     /**
      *  Ascensores & Mutadores

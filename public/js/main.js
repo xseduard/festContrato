@@ -1,0 +1,3 @@
+toastr.options = {  
+  "progressBar": true  
+}

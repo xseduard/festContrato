@@ -35,10 +35,6 @@ class UpdateRoleRequest extends FormRequest
      */
     public function attributes() 
     {
-        return [
-        'name' => 'llave interna',   
-        'display_name' => 'nombre público',   
-        'description' => 'descripción',   
-        ];
+        return Role::$attributesCustom;
     }
 }

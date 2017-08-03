@@ -33,9 +33,6 @@ class Update$MODEL_NAME$Request extends FormRequest
      */
     public function attributes() 
     {
-        return [
-        '' => '',   
-        '' => '',   
-        ];
+        return $MODEL_NAME$::$attributesCustom;
     }
 }

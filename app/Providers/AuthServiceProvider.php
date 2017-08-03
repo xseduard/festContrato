@@ -13,6 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * The policy mappings for the application.
      *
      * @var array
+     * Assignacion de politicas "polices"
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
