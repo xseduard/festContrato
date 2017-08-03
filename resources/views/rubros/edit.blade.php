@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            $MODEL_NAME_HUMAN$ <small><i class="fa fa-angle-right" aria-hidden="true"></i></small> Editar
+            Rubro <small><i class="fa fa-angle-right" aria-hidden="true"></i></small> Editar
         </h1>
    </section>
    <div class="content">
@@ -14,9 +14,9 @@
          <div class="box box-primary">
              <div class="box-body">
                  <div class="row">
-                     {!! Form::model($$MODEL_NAME_CAMEL$, ['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.update', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$], 'method' => 'patch']) !!}
+                     {!! Form::model($rubro, ['route' => ['rubros.update', $rubro->id], 'method' => 'patch']) !!}
 
-                          @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.fields')
+                          @include('rubros.fields')
 
                      {!! Form::close() !!}
                  </div>

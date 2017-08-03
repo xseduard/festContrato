@@ -46,3 +46,5 @@ Route::resource('triangles', 'TriangleController');
 Route::resource('usuarios', 'UsersController');
 
 Route::resource('roles', 'RoleController');
+
+Route::resource('rubros', 'RubroController');

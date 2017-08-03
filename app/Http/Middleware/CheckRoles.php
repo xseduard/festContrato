@@ -24,7 +24,7 @@ class CheckRoles
             return $next($request);
         }
 
-        Session::flash('error', 'Requiere nivel de privilegios superior.');
+        Session::flash('error', 'No estas autorizado para realizar esta acción');
         return back()->withInput();
     }
 }

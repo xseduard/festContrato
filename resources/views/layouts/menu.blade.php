@@ -15,3 +15,7 @@
 </li>
 
 
+<li class="{{ Request::is('rubros*') ? 'active' : '' }}">
+    <a href="{!! route('rubros.index') !!}"><i class="fa fa-edit"></i><span>Rubros</span></a>
+</li>
+
