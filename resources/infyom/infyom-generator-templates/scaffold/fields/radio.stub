@@ -1,3 +1,3 @@
-    <label class="radio-inline has-feedback{{ $errors->has('$FIELD_NAME$') ? ' has-error' : '' }}">
+    <label class="radio-inline {{ $errors->has('$FIELD_NAME$') ? ' has-feedback has-error' : '' }}">
         {!! Form::radio('$FIELD_NAME$', "$VALUE$", null) !!} $LABEL$
     </label>

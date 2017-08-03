@@ -36,7 +36,7 @@ class $MODEL_NAME$Controller extends AppBaseController
     public function index(Request $request)
     {
         $this->$MODEL_NAME_CAMEL$Repository->pushCriteria(new RequestCriteria($request));
-        $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->paginate();
+        $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->orderBy('updated_at', 'desc')->paginate();
 
         return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.index')
             ->with('$MODEL_NAME_PLURAL_CAMEL$', $$MODEL_NAME_PLURAL_CAMEL$);

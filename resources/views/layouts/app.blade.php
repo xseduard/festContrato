@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,7 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/deplocal/css/bootstrap-xlgrid.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">    
     @stack('css-depLTE')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/AdminLTE.min.css">
@@ -43,7 +45,30 @@
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <!-- User Account Menu -->
+                    <!-- User Account Menu -->                    
+                        <!-- search form (Optional) -->
+                        @if (empty(Route::getCurrentRoute()->parameters))
+                             {!!  Form::open(['url' => Route::getCurrentRoute()->uri, 'method' => 'GET', 'class' => 'navbar-form navbar-left', 'role' => 'search']) !!}                        
+                                <div class="input-group navbar-form-custom">
+                                    <input type="text" name="search" class="form-control" placeholder="Buscar..."/>
+                              <span class="input-group-btn">
+                                <button type='submit' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
+                                </button>
+                              </span>
+                                </div>
+                            {!! Form::close() !!} 
+                        @else
+                            {!!  Form::open(['url' => '#', 'class' => 'navbar-form navbar-left', 'role' => 'search']) !!}                        
+                                <div class="input-group navbar-form-custom">
+                                    <input type="text" title="Los filtros no esta disponibles en esta pagina" name="search" class="form-control" placeholder="Buscar..." disabled />
+                              <span class="input-group-btn">
+                                <button type='' title="Los filtros no esta disponibles en esta pagina" id='search-btn' class="btn btn-flat" disabled="true"><i class="fa fa-search"></i>
+                                </button>
+                              </span>
+                                </div>
+                            {!! Form::close() !!}   
+                        @endif
+                  
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">

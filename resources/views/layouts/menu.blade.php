@@ -16,6 +16,18 @@
 
 
 <li class="{{ Request::is('rubros*') ? 'active' : '' }}">
-    <a href="{!! route('rubros.index') !!}"><i class="fa fa-edit"></i><span>Rubros</span></a>
+    <a href="{!! route('rubros.index') !!}"><i class="fa fa-circle-thin"></i></i><span>Rubros</span></a>
+</li>
+
+<li class="{{ Request::is('departamentos*') ? 'active' : '' }}">
+    <a href="{!! route('departamentos.index') !!}"><i class="fa fa-circle-thin"></i></i><span>Departamentos</span></a>
+</li>
+
+<li class="{{ Request::is('municipios*') ? 'active' : '' }}">
+    <a href="{!! route('municipios.index') !!}"><i class="fa fa-circle-thin"></i></i><span>Municipios</span></a>
+</li>
+
+<li class="{{ Request::is('naturals*') ? 'active' : '' }}">
+    <a href="{!! route('naturals.index') !!}"><i class="fa fa-users"></i><span>Tercero Natural</span></a>
 </li>
 

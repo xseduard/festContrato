@@ -17,6 +17,14 @@
 	      placeholder: 'Seleccionar...',      
 	      allowClear: true
 	    });
+	    $(".select2_short").select2({
+          tags: false, // permite insertar texto
+          language: {noResults: function() {return "No se encontraron coincidencias";}, searching: function() {return "Buscando..";}
+                },
+          placeholder: 'Seleccionar...',      
+          allowClear: true,
+           minimumResultsForSearch: -1
+        });
 	    $('.datepicker').datepicker({             
 	        format: 'yyyy-mm-dd',        
 	        language: 'es',

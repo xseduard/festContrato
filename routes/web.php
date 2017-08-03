@@ -48,3 +48,9 @@ Route::resource('usuarios', 'UsersController');
 Route::resource('roles', 'RoleController');
 
 Route::resource('rubros', 'RubroController');
+
+Route::resource('departamentos', 'DepartamentoController');
+
+Route::resource('municipios', 'MunicipioController');
+
+Route::resource('naturals', 'NaturalController');

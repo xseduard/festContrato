@@ -50,7 +50,7 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
-            'strict' => true,
+            'strict' => false, //5.4 default true @xseduard
             'engine' => null,
         ],
 
