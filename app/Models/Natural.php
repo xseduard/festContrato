@@ -34,12 +34,14 @@ use DatesTranslator, UserRelation;
         'genero',
         'direccion',
         'direccion_mpio_id',
-        'correo',
+        'email',
         'celular',
         'telefono',
         'observaciones',
         'status',
         'user_gen_id',
+        'cargo_id',
+        'faccion_id',
         'user_id'
     ];
 
@@ -54,12 +56,14 @@ use DatesTranslator, UserRelation;
         'genero' => 'string',
         'direccion' => 'string',
         'direccion_mpio_id' => 'integer',
-        'correo' => 'string',
+        'email' => 'string',
         'celular' => 'string',
         'telefono' => 'string',
         'observaciones' => 'string',
         'status' => 'string',
         'user_gen_id' => 'integer',
+        'cargo_id' => 'integer',
+        'faccion_id' => 'integer',
         'user_id' => 'integer'
     ];
 
@@ -72,7 +76,7 @@ use DatesTranslator, UserRelation;
         'nombres' => 'required',
         'apellidos' => 'required',
         'genero' => 'required',
-        'correo' => 'email',
+        'email' => 'email',
         'celular' => 'numeric'
     ];
 
@@ -85,6 +89,8 @@ use DatesTranslator, UserRelation;
         'telefono'           => 'teléfono',
         'status'             => 'estado',
         'user_gen_id'        => 'usuario asignado',
+        'cargo_id'           => 'cargo / relación / intervención',
+        'faccion_id'         => 'Facción',
            
     ];
 
@@ -94,11 +100,64 @@ use DatesTranslator, UserRelation;
     
     // public function modelo(){
     //     return $this->belongsTo('App\Models\Modelo');
-    // }    
+    // }  
 
-    
+    public function expedicion(){
+        return $this->belongsTo('App\Models\Municipio', 'expedicion_mpio_id');
+    }
+
+    public function direccion_ciudad(){
+        return $this->belongsTo('App\Models\Municipio', 'direccion_mpio_id');
+    }
+    public function cargo(){
+        return $this->belongsTo('App\Models\Cargo');
+    }
+
+    public function faccion(){
+        return $this->belongsTo('App\Models\Faccion');
+    }
+
+    public function contrato()
+    {
+        return $this->morphMany('App\Models\Contrato', 'contratable');
+    }
 
     /**
      *  Ascensores & Mutadores
      */
+
+    public function getFullNameAttribute()
+    {
+       return $this->nombres . ' ' . $this->apellidos;
+    }
+    public function getDocIdAttribute()
+    {
+       return $this->cedula;
+    }    
+
+    public function scopeSfullname($query, $text)
+    {
+        $text = trim($text);
+        if (!empty($text)) {
+            return $query->Where(function ($q) use ($text) {
+                $q->where('nombres', 'LIKE', "%$text%")
+                    ->orWhere('apellidos', 'LIKE', "%$text%");
+            });
+        }
+    }
+
+    public function scopeScedula($query, $cedula)
+    {
+        $cedula = trim($cedula);
+        if (!empty($cedula)) {
+            return $query->Where('cedula', 'LIKE', "%$cedula%");
+        }
+    }
+    
+
+    /**
+     * Especial Functions
+     */
+
+
 }

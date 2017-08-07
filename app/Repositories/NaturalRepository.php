@@ -20,19 +20,18 @@ class NaturalRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'cedula',
-        'expedicion_mpio_id',
-        'nombres',
-        'apellidos',
-        'genero',
-        'direccion',
-        'direccion_mpio_id',
-        'correo',
-        'celular',
-        'telefono',
-        'observaciones',
-        'status',
-        'user_gen_id'
+        'cedula' => 'LIKE',
+        'expedicion_mpio_id' => 'LIKE',
+        'nombres' => 'LIKE',
+        'apellidos' => 'LIKE',
+        'genero' => 'LIKE',
+        'direccion' => 'LIKE',
+        'direccion_mpio_id' => 'LIKE',
+        'celular' => 'LIKE',
+        'telefono' => 'LIKE',
+        'observaciones' => 'LIKE',
+        'status' => 'LIKE',
+        'user_gen_id' => 'LIKE',
     ];
 
     /**

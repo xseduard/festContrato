@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateNaturalRequest;
 use App\Http\Requests\UpdateNaturalRequest;
+use App\Models\Natural;
 use App\Repositories\CentralRepository;
 use App\Repositories\NaturalRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Session;
@@ -39,7 +40,7 @@ class NaturalController extends AppBaseController
         $naturals = $this->naturalRepository->orderBy('updated_at', 'desc')->paginate();
 
         return view('naturals.index')
-            ->with('naturals', $naturals);
+            ->with(['naturals' => $naturals, 'status' => $this->centralRepository->naturalStatus(), 'generos' => $this->centralRepository->generos()]);
     }
     /**
      * Commons Funtions Repository
@@ -47,10 +48,11 @@ class NaturalController extends AppBaseController
     public function sels()
     {
         $sels = [];
-        $sels['generos'] = $this->centralRepository->generos();
+        $sels['generos']       = $this->centralRepository->generos();
         $sels['naturalStatus'] = $this->centralRepository->naturalStatus();
-        $sels['municipio_id'] = $this->centralRepository->municipio_id();
-        // $sels['id_attribute'] = $this->centralRepository->id_attribute();
+        $sels['municipio_id']  = $this->centralRepository->municipio_id();
+        $sels['cargo_id']      = $this->centralRepository->cargo_id();
+        $sels['faccion_id']    = $this->centralRepository->faccion_id();
         return $sels;
     }
 
@@ -80,7 +82,7 @@ class NaturalController extends AppBaseController
 
         $natural = $this->naturalRepository->create($input);
 
-        Session::flash('success', 'Natural registrado correctamente.');
+        Session::flash('success', 'Tercero Natural registrado correctamente.');
 
         return redirect(route('naturals.index'));
     }
@@ -97,7 +99,7 @@ class NaturalController extends AppBaseController
         $natural = $this->naturalRepository->findWithoutFail($id);
 
         if (empty($natural)) {
-            Session::flash('error', 'Natural No se encuentra registrado.');
+            Session::flash('error', 'Tercero Natural No se encuentra registrado.');
 
             return redirect(route('naturals.index'));
         }
@@ -117,7 +119,7 @@ class NaturalController extends AppBaseController
         $natural = $this->naturalRepository->findWithoutFail($id);
 
         if (empty($natural)) {
-            Session::flash('error', 'Natural No se encuentra registrado.');
+            Session::flash('error', 'Tercero Natural No se encuentra registrado.');
 
             return redirect(route('naturals.index'));
         }
@@ -140,7 +142,7 @@ class NaturalController extends AppBaseController
         $natural = $this->naturalRepository->findWithoutFail($id);
 
         if (empty($natural)) {
-            Session::flash('error', 'Natural No se encuentra registrado.');
+            Session::flash('error', 'Tercero Natural No se encuentra registrado.');
 
             return redirect(route('naturals.index'));
         }
@@ -150,7 +152,7 @@ class NaturalController extends AppBaseController
 
         $natural = $this->naturalRepository->update($input, $id);
 
-        Session::flash('success', 'Natural actualizado correctamente.');
+        Session::flash('success', 'Tercero Natural actualizado correctamente.');
 
         return redirect(route('naturals.index'));
     }
@@ -167,15 +169,32 @@ class NaturalController extends AppBaseController
         $natural = $this->naturalRepository->findWithoutFail($id);
 
         if (empty($natural)) {
-            Session::flash('error', 'Natural No se encuentra registrado.');
+            Session::flash('error', 'Tercero Natural No se encuentra registrado.');
 
             return redirect(route('naturals.index'));
         }
 
         $this->naturalRepository->delete($id);
 
-        Session::flash('success', 'Natural eliminado correctamente.');
+        Session::flash('success', 'Tercero Natural eliminado correctamente.');
 
         return redirect(route('naturals.index'));
+    }
+
+    public function getNaturalsCargo(Request $request)
+    {
+        // dd($request->all());
+        $cargos = $request->cargos;
+        if($request->ajax()){
+            $natural = ($this->naturalRepository->model())::whereHas('cargo', function ($query) use($cargos){
+                            $query->where('key', '=', $cargos);
+                        })->get(['id', 'cedula', 'nombres', 'apellidos']);
+            return response()->json($natural);
+        } else {   
+            $natural = ($this->naturalRepository->model())::whereHas('cargo', function ($query) use($cargos){
+                            $query->where('key', '=', $cargos);
+                        })->get(['id', 'cedula', 'nombres', 'apellidos']);
+            return $natural;
+        }
     }
 }

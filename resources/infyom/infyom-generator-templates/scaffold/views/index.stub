@@ -24,7 +24,7 @@
                 </div>                    
             @else
                 <div class="box box-primary">
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.table')
                         @include('common.paginate', ['records' => $$MODEL_NAME_PLURAL_CAMEL$])   
                     </div>

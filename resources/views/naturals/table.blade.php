@@ -5,8 +5,10 @@
         <th>Apellidos</th>
         <th>Genero</th>
         <th>Correo</th>
+        <th class="text-center">Cargo</th>
+        <th class="text-center">Facción</th>
         <th>Estado</th>
-        <th>Usuario RelGen</th>
+        {{-- <th>UsrRelGen</th> --}}
         <th>Última actualización</th>
         <th colspan="3" class="text-right">Acciones</th>
     </thead>
@@ -16,10 +18,12 @@
             <td>{!! number_format($natural->cedula, 0, '.', '.' ) !!}</td>
             <td>{!! $natural->nombres !!}</td>
             <td>{!! $natural->apellidos !!}</td>
-            <td>{!! $natural->genero !!}</td>
+            <td>{!! $generos[$natural->genero] !!}</td>
             <td>{!! $natural->correo !!}</td>
-            <td>{!! $natural->status !!}</td>
-            <td>{!! $natural->user_gen_id !!}</td>
+            <td class="text-center">{!! $natural->cargo ? '<span class="badge badge-success">'.$natural->cargo->nombre.'</span>' : '<span class="badge badge-default">N/D</span>' !!}</td>
+            <td class="text-center">{!! $natural->faccion ? '<span class="badge badge-success">'.$natural->faccion->nombre.'</span>' : '<span class="badge badge-default">N/D</span>' !!}</td>
+            <td>{!! $status[$natural->status] !!}</td>
+            {{-- <td>{!! $natural->user_gen_id !!}</td> --}}            
             <td>{!! $natural->updated_at->diffForHumans() !!}</td>
             <td>
                 {!! Form::open(['route' => ['naturals.destroy', $natural->id], 'method' => 'delete']) !!}

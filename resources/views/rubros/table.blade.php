@@ -3,8 +3,7 @@
         <th>Nombre</th>
         <th>Codigo</th>
         <th>Valor</th>
-        <th>Fecha Vigencia Inicio</th>
-        <th>Fecha Vigencia Final</th>
+        <th>Vigencia Fiscal</th>
         <th colspan="3" class="text-right">Acciones</th>
     </thead>
     <tbody>
@@ -13,8 +12,7 @@
             <td>{!! $rubro->nombre !!}</td>
             <td>{!! $rubro->codigo !!}</td>
             <td>{!! $rubro->valor !!}</td>
-            <td>{!! $rubro->fecha_vigencia_inicio !!}</td>
-            <td>{!! $rubro->fecha_vigencia_final !!}</td>
+            <td>{!! $rubro->fecha_vigencia_inicio->year,' - ',$rubro->fecha_vigencia_final->year !!}</td>
             <td>
                 {!! Form::open(['route' => ['rubros.destroy', $rubro->id], 'method' => 'delete']) !!}
                 <div class='btn-group pull-right'>

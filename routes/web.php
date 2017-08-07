@@ -54,3 +54,15 @@ Route::resource('departamentos', 'DepartamentoController');
 Route::resource('municipios', 'MunicipioController');
 
 Route::resource('naturals', 'NaturalController');
+Route::get('naturals/express/bycargo','NaturalController@getNaturalsCargo');
+Route::post('naturals/bycargo','NaturalController@getNaturalsCargo');
+
+Route::resource('juridicos', 'JuridicoController');
+
+Route::resource('cargos', 'CargoController');
+
+Route::resource('faccions', 'FaccionController');
+
+Route::resource('obligacions', 'ObligacionController');
+
+Route::resource('contratos', 'ContratoController');

@@ -22,11 +22,11 @@ class CreateNaturalsTable extends Migration
             $table->enum('genero', ['M', 'F', 'LGBTI']);
             $table->string('direccion', 150);
             $table->integer('direccion_mpio_id')->unsigned();
-            $table->string('correo', 100);
+            $table->string('email', 100);
             $table->string('celular', 20);
             $table->string('telefono', 50);
             $table->text('observaciones');
-            $table->string('status')->default('Activo');
+            $table->string('status', 5)->default('A');
             $table->integer('user_gen_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

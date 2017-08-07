@@ -31,3 +31,23 @@
     <a href="{!! route('naturals.index') !!}"><i class="fa fa-users"></i><span>Tercero Natural</span></a>
 </li>
 
+<li class="{{ Request::is('juridicos*') ? 'active' : '' }}">
+    <a href="{!! route('juridicos.index') !!}"><i class="fa fa-building"></i><span>Tercero Jurídicos</span></a>
+</li>
+
+
+<li class="{{ Request::is('cargos*') ? 'active' : '' }}">
+    <a href="{!! route('cargos.index') !!}"><i class="fa fa-circle-thin"></i><span>Cargos</span></a>
+</li>
+
+<li class="{{ Request::is('faccions*') ? 'active' : '' }}">
+    <a href="{!! route('faccions.index') !!}"><i class="fa fa-circle-thin"></i><span>Facciones</span></a>
+</li>
+<li class="{{ Request::is('obligacions*') ? 'active' : '' }}">
+    <a href="{!! route('obligacions.index') !!}"><i class="fa fa-circle-thin"></i><span>Obligaciones Espc.</span></a>
+</li>
+
+<li class="{{ Request::is('contratos*') ? 'active' : '' }}">
+    <a href="{!! route('contratos.index') !!}"><i class="fa fa-edit"></i><span>Contratos</span></a>
+</li>
+
